@@ -1,0 +1,137 @@
+<head>
+  <title>Personal_Blog</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  <link href="Personal_Blog.css" rel=stylesheet>
+</head>
+
+<body>
+<nav class="navbar navbar-default navbar-inverse navbar-fixed-top">
+	<div class="container">
+		<div class="navbar navbar=default">
+			<div class="navbar-header page-scroll">
+			        <a href="#" class="navbar-brand"> <!--you can link href to navigate to a div id-->
+                      My Blog
+                    </a>
+			</div>
+							
+					<div class="collapse navbar-collapse">
+						<ul class="nav navbar-nav navbar-right">
+							<li>
+								<a href="#" class="navbar-brand">Home</a>
+							</li>
+							<li>
+								<a href="#" class="navbar-brand">About</a>
+							</li>
+							<li>
+								<a href="#" class="navbar-brand">Contact</a>
+							</li>
+							<li>
+								<p>{{> loginButtons align="right"}}</p>
+							</li>
+						</ul>
+					</div>
+            <!-- /.navbar-collapse -->
+					
+		</div>
+	</div>
+</nav>	
+	
+	
+	<!-- Set your background image for this header on the line below. -->
+    <div class="intro-header" style="background-image: url('wordpress.jpg')">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="site-heading">
+                        <h1>Simon's Blog</h1>
+                        <hr class="small">
+                        <span class="subheading">A Dope Blog by Simon</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+	
+	 <!-- Main Content -->
+	<div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-preview">
+                    <p>
+                        <h2 class="post-title">
+                            Man must explore, and this is exploration at its greatest
+                        </h2>
+                        <h3 class="post-subtitle">
+                            Problems look mighty small from 150 miles up
+                        </h3>
+                    </p>
+                    <p class="post-meta">Posted by Simon Nguyen on April 19, 2016</p>
+                </div>
+	
+                <!-- Pager -->
+                <ul class="pager">
+                    <li class="next">
+                        <h3>
+						Comments
+						</h3>
+                    </li> 
+                </ul>
+            </div>
+        </div>
+    </div>
+	
+	<div class="container tweets">
+        {{#each tweets}}
+            {{> tweet}}
+        {{/each}}
+    </div>
+	
+	{{#if currentUser}}
+    <div class="container">
+        <div class="row">
+			<div class = "col-md-4">
+			</div>
+            <form class="col-md-4 new-tweet">
+                <div class="form-group">
+                    <textarea id="my-textarea"
+                        type="text"
+                        name="text"
+						rows="5"
+						cols="40"
+                        class="form-control"
+                        placeholder="What cool thing do you have to say?"></textarea>
+                </div>
+				      <div>
+							<button class="btn btn-secondary" type ="submit" style="float: right;">Submit</button>
+					  </div>
+            </form>
+        </div>
+        <hr>
+    </div>
+  {{/if}}
+  
+  
+  
+</body>
+
+
+<template name="tweet">
+    <div class="row tweet">
+      {{#if current_user}}
+        <button type="button" class="btn btn-default delete-tweet" style="float: right;">
+			<span class="glyphicon glyphicon-remove"> </span>
+		</button> <!--&times is unique to html, displays an X -->
+		<button type="button" class="btn btn-default update-tweet" style="float: right;">
+			<span class ="glyphicon glyphicon-pencil"> </span>
+		</button>
+      {{/if}}
+		<div class="col-xs-4">
+		</div>
+        <div class="col-xs-4">
+            <p class="text lead">{{text}}</p>
+            <p class="small">Posted: {{time}} by {{username}}</p>
+        </div>
+    </div>
+    <hr>
+</template>
